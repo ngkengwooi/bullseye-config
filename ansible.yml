@@ -1,0 +1,81 @@
+- hosts: localhost
+  become: true
+  tasks:
+    - name: Install packages
+      package:
+        name: "{{item}}"
+        state: present
+      loop:
+        - 0ad
+        - adwaita-qt
+        - audacity
+        - blender
+        - brasero
+        - cheese
+        - clamtk
+        - evolution
+        - evolution-ews
+        - filezilla
+        - firmware-linux-nonfree
+        - firmware-realtek
+        - flatpak
+        - freecad
+        - frogatto
+        - gchempaint
+        - ghostwriter
+        - gnome-boxes
+        - gnome-dictionary
+        - gnome-games
+        - gnome-mastermind
+        - gnome-shell-extension-appindicator
+        - gnome-shell-extension-caffeine
+        - gnome-sound-recorder
+        - gnome-subtitles
+        - handbrake
+        - homebank
+        - ibus-libpinyin
+        - imagej
+        - inkscape
+        - keepassxc
+        - libreoffice
+        - lyx
+        - musescore3
+        - mkvtoolnix-gui
+        - neofetch
+        - nextcloud-desktop
+        - p7zip-full
+        - pandoc
+        - pdfarranger
+        - pitivi
+        - pronterface
+        - prusa-slicer
+        - puddletag
+        - qt5-gtk-platformtheme
+        - qt5-style-plugins
+        - r-base
+        - r-cran-rcmdr
+        - remmina
+        - rhythmbox-plugin-alternative-toolbar
+        - sigil
+        - simplescreenrecorder
+        - soundconverter
+        - supertux
+        - supertuxkart
+        - ttf-mscorefonts-installer
+        - unknown-horizons
+        - warzone2100
+        - webext-ublock-origin
+        - webext-https-everywhere
+    - name: Remove packages
+      package:
+        name: "{{item}}"
+        state: absent
+      loop:
+        - gnome-software
+        - synaptic
+        - xterm
+    - name: Add flathub repository
+      flatpak_remote:
+        name: flathub
+        flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
+        state: present
